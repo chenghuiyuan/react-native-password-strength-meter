@@ -69,6 +69,7 @@ const BAR_PASSWORD_STRENGTH_DISPLAY = {
   labelStyle: {},
   barColor: '#f1f3f4',
   width: deviceWidth - 20,
+  score: 0,
 };
 
 const BOX_PASSWORD_STRENGTH_DISPLAY = {
