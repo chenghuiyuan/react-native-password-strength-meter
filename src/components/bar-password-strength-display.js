@@ -64,7 +64,7 @@ class BarPasswordStrengthDisplay extends Component {
           : null
         }
         {labelVisible && (touched || score !== 0) && score < 70
-          ? <View style={{height: 80, marginTop: 15}}><Text style={[style.label, { color: '#828282'}]}>Your password is easily guessed. Try making your password longer. Combine uppercase and lowercase letters. Add special characters.</Text></View>
+          ? <View style={{height: 85, marginTop: 15, textAlign:'justify'}}><Text style={[style.label, { color: '#828282'}]}>Your password is easily guessed. Try making your password longer. Combine uppercase and lowercase letters. Add special characters.</Text></View>
           : null
         }
       </View>
