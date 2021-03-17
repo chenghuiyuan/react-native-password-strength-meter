@@ -34,8 +34,8 @@ const BAR_PASSWORD_STRENGTH_DISPLAY = {
     },
     {
       label: 'So-so',
-      labelColor: '#c4ad37',
-      activeBarColor: '#c4ad37',
+      labelColor: '#e0c63f',
+      activeBarColor: '#e0c63f',
     },
     {
       label: 'Average',
