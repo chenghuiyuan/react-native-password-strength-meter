@@ -48,6 +48,7 @@ class BarPasswordStrengthDisplay extends Component {
       useNativeDriver: false
     }).start();
     return (
+      <>
       <View style={[style.wrapper, wrapperStyle]}>
         <View style={[style.barContainer, barContainerStyle, { backgroundColor: barColor, width }]}>
           <Animated.View
@@ -62,7 +63,12 @@ class BarPasswordStrengthDisplay extends Component {
           ? <Text style={[style.label, labelStyle, { color: labelColor }]}>{label}</Text>
           : null
         }
+        {labelVisible && (touched || score !== 0) && score < 70
+          ? <Text style={[style.label, { color: '#828282'}]}>Your password is easily guessed. Try making your password longer. Combine uppercase and lowercase letters. Add special characters.</Text>
+          : null
+        }
       </View>
+      </>
     );
   }
 }
