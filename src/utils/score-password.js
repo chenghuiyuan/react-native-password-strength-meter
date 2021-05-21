@@ -50,8 +50,7 @@ function scorePassword(pass, minLength, limit, variations = {}) {
 
   
   
-  if (!hasPassedAll || pass.length < PASSWORD_MIN_LENGTH) return score /2;
-  else if (!pass || pass.length < minLength) { return score;}
+  if (!pass || pass.length < minLength) { return score;}
 
   /* Score unique letters until 5 repetitions */
   for (let i = 0; i < pass.length; i += 1) {
@@ -65,6 +64,10 @@ function scorePassword(pass, minLength, limit, variations = {}) {
     variationCount += variationCheck === true ? 1 : 0;
   });
   score += (variationCount - 1) * 10;
+  if (!hasPassedAll || pass.length < PASSWORD_MIN_LENGTH){ 
+    const returnScore = score/2 ;
+    return limitValue(returnScore, 0, limit);
+  }
 
   return limitValue(score, 0, limit);
 }
