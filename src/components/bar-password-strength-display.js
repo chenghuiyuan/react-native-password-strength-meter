@@ -13,11 +13,7 @@ import calculateLevel from '../utils/calculate-level';
 // Style
 import style from '../style';
 import { BAR_PASSWORD_STRENGTH_DISPLAY } from '../constants';
-const PASSWORD_MIN_LENGTH = 8;
-const PASSWORD_REQUIRE_LOWERCASE = true;
-const PASSWORD_REQUIRE_UPPERCASE = true;
-const PASSWORD_REQUIRE_NUMBER = true;
-const PASSWORD_REQUIRE_SYMBOL = true;
+
 class BarPasswordStrengthDisplay extends Component {
   constructor(props) {
     super(props);
@@ -46,43 +42,6 @@ class BarPasswordStrengthDisplay extends Component {
     const absoluteWidth = calculateAbsoluteWidth(score, width);
     const { label, labelColor, activeBarColor } = calculateLevel(score, levels);
 
-    const characterTests = [
-      {
-        condition: 'At least 1 lowercase',
-        regexp: /[a-z]+/,
-        isRequired: PASSWORD_REQUIRE_LOWERCASE,
-      },
-      {
-        condition: 'At least 1 uppercase',
-        regexp: /[A-Z]+/,
-        isRequired: PASSWORD_REQUIRE_UPPERCASE,
-      },
-      {
-        condition: 'At least 1 number',
-        regexp: /[0-9]+/,
-        isRequired: PASSWORD_REQUIRE_NUMBER,
-      },
-      {
-        condition: 'At least 1 symbol',
-        regexp: /[!@#\$%\^&\*\.\(\)\_\-]+/,
-        isRequired: PASSWORD_REQUIRE_SYMBOL,
-      },
-    ];
-
-    let hasPassedAll = true;
-
-    characterTests.forEach((test) => {
-      if (test.isRequired) {
-        if (test.regexp.test(password)) {
-          // Passed this condition
-        } else {
-          // Failed
-          hasPassedAll = false;
-        }
-      }
-    });
-
-
     Animated.timing(this.animatedBarWidth, {
       toValue: absoluteWidth,
       duration: 700,
@@ -104,7 +63,7 @@ class BarPasswordStrengthDisplay extends Component {
           ? <Text style={[style.label, labelStyle, { color: labelColor }]}>{label}</Text>
           : null
         }
-        {labelVisible && (touched || score !== 0) && (score < 70 || !hasPassedAll || password.length<PASSWORD_MIN_LENGTH)
+        {labelVisible && (touched || score !== 0) && score < 70
           ? <View style={{height: 85, marginTop: 15, textAlign:'justify'}}><Text style={[style.label, { color: '#828282'}]}>Your password is easily guessed. Try making your password longer. Include at least one special character, one uppercase, one lowercase and one number.</Text></View>
           : null
         }
