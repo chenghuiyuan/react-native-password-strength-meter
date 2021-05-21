@@ -39,7 +39,7 @@ function scorePassword(pass, minLength, limit, variations = {}) {
 
   characterTests.forEach((test) => {
     if (test.isRequired) {
-      if (test.regexp.test(password)) {
+      if (test.regexp.test(pass)) {
         // Passed this condition
       } else {
         // Failed
